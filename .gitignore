@@ -1,2 +1,2 @@
-./.buildozer
-./venv
+/myapp/.buildozer
+/venv
