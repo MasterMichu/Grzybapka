@@ -1,3 +1,44 @@
 #:include MushroomMapview.kv
-
-MushroomMapview:
+WindowManager:
+    Mainwindow:
+    FilterChoice:
+    Configure:
+    RecordMushrooms:
+    Publish:
+<FilterChoice>:
+    name: "filter"
+<Configure>:
+    name: "configure"
+<RecordMushrooms>:
+    name: "record"
+<Publish>:
+    name: "publish"
+    Button:
+        text: "Go Back"
+<Mainwindow>:
+    name: "main"
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:4
+            Button:
+                text:"apply filters"
+                font_size: 12
+                size_hint: 0.25, 0.1
+                size_hint_y: 0.1
+            Button:
+                text:"Configure"
+                font_size: 12
+                size_hint: 0.25, 0.1
+                size_hint_y: 0.1
+            Button:
+                text:"Record"
+                font_size: 12
+                size_hint: 0.25, 0.1
+                size_hint_y: 0.1
+            Button:
+                text:"Publish"
+                font_size: 12
+                size_hint: 0.25, 0.1
+                size_hint_y: 0.1
+        MushroomMapview:
