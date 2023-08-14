@@ -1,18 +1,15 @@
-import kivy
-from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
-import random
-kivy.require("2.2.1")
-class MyRoot(BoxLayout):
-    def __init__(self):
-        super(MyRoot,self).__init__()
-    def generate_number(self):
-        self.random_label.text=str(random.randint(0,1000))
+from kivymd.app import MDApp
+from MushroomMapview import MushroomMapview
+import sqlite3
 
-class NeuralRandom(App):
-    def build(self):
-        return MyRoot()
 
-neuralRandom=NeuralRandom()
-neuralRandom.run()
+class MainApp(MDApp):
+    connection=None
+    cur=None
+    def on_start(self):
+        self.connection=sqlite3.connect("localDB.db")
+        self.cur=self.connection.cursor()
+        
+    pass
+mainappinstance=MainApp()
+mainappinstance.run()
