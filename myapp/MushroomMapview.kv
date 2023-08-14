@@ -1,0 +1,12 @@
+#:import MapView kivy_garden.mapview.MapView
+
+<MushroomMapview>:
+    lat: 33.75
+    lon: -84.4
+    zoom: 10
+    on_zoom:
+        self.zoom = 2 if self.zoom < 2 else self.zoom
+    on_lat:
+        self.start_getting_points_in_fov(self.zoom)
+    on_lon:
+        self.start_getting_points_in_fov(self.zoom)

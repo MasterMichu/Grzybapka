@@ -1,0 +1,13 @@
+<MushroomMarker>:
+    default_size: 25
+    size: 25
+    source:'kivymd/images/transparent.png'
+
+    canvas.before:
+        Color:
+            rgba: app.theme_cls.primary_color
+        RoundedRectangle:
+            radious: [root.size/2.0]
+            size: [root.size,root.size]
+            pos: root.pos[0] + root.size[0]/2.0,root.pos[1] + root.size[1]/2.0,
+
