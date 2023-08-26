@@ -1,0 +1,21 @@
+
+<FilterChoice>:
+    name: "filter"
+    BoxLayout:
+        cols: 2
+        orientation: 'horizontal'
+        BoxLayout:
+            orientation: 'vertical'
+            Button:
+                text: "go back"
+                color: 0,1,0,1
+                on_release: 
+                    app.root.current="main"
+                    root.manager.transition.direction="right" 
+            Button:
+                text: "date"
+            Button:
+                text: "date input"
+        MushroomsCheckboxesList:
+            size_hint: 2,1
+            

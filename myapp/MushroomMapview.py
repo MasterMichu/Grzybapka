@@ -70,9 +70,10 @@ class MushroomMapview(MapView):
         self.mappoints_values = []
         app = App.get_running_app()
         print(self.zoomvalue)
+        sql_extra_filter=app.filterconfig
         if self.zoomvalue > 12:
-            sql_statement = "SELECT * FROM mushrooms WHERE x>%s AND x<%s AND y>%s AND y<%s " % (
-                min_lon, max_lon, min_lat, max_lat)
+            sql_statement = "SELECT * FROM mushrooms WHERE x>%s AND x<%s AND y>%s AND y<%s%s" % (
+                min_lon, max_lon, min_lat, max_lat,sql_extra_filter)
             fetching = app.cur.execute(sql_statement)
             points = app.cur.fetchall()
             for mushroom in points:
@@ -92,6 +93,7 @@ class MushroomMapview(MapView):
         boxsize_lat = (max_lat - min_lat) / segments_on_map
         boxsize_lon = (max_lon - min_lon) / segments_on_map
         app = App.get_running_app()
+        sql_extra_filter=app.filterconfig
         for i in range(0, segments_on_map):
             x_min = i * boxsize_lon + min_lon
             x_max = (i + 1) * boxsize_lon + min_lon
@@ -100,8 +102,8 @@ class MushroomMapview(MapView):
                 y_min = j * boxsize_lat + min_lat
                 y_max = (j + 1) * boxsize_lat + min_lat
                 y_pos = y_min + boxsize_lat / 2
-                sql_statement = "SELECT COUNT(*) FROM mushrooms WHERE x>%s AND x<%s AND y>%s AND y<%s " % (
-                    x_min, x_max, y_min, y_max)
+                sql_statement = "SELECT COUNT(*) FROM mushrooms WHERE x>%s AND x<%s AND y>%s AND y<%s%s " % (
+                    x_min, x_max, y_min, y_max,sql_extra_filter)
                 app.cur.execute(sql_statement)
                 points = app.cur.fetchall()
                 if points[0][0] > 0:

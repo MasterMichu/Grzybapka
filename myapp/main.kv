@@ -1,44 +1,59 @@
 #:include MushroomMapview.kv
-WindowManager:
-    Mainwindow:
-    FilterChoice:
-    Configure:
-    RecordMushrooms:
-    Publish:
-<FilterChoice>:
-    name: "filter"
-<Configure>:
-    name: "configure"
+#:include FilterChoice.kv
+#:include Configure.kv
+
+
 <RecordMushrooms>:
     name: "record"
+    Button:
+        text:"go back"
+        on_release: 
+            app.root.current="main"
+            root.manager.transition.direction="right"
+
 <Publish>:
     name: "publish"
     Button:
-        text: "Go Back"
+        text:"go back"
+        on_release: 
+            app.root.current="main"
+            root.manager.transition.direction="right"
 <Mainwindow>:
     name: "main"
     GridLayout:
-        cols:1
+        cols: 1
         GridLayout:
-            cols:4
+            cols: 4
+            size_hint: 1, 0.1  # Set the height to 10% of the screen height
+
             Button:
-                text:"apply filters"
+                text: "apply filters"
                 font_size: 12
-                size_hint: 0.25, 0.1
-                size_hint_y: 0.1
+                size_hint: 0.25, 1  # 25% width of the parent layout
+                on_release: 
+                    app.root.current= "filter"
+                    root.manager.transition.direction="left"
+
             Button:
-                text:"Configure"
+                text: "Configure"
                 font_size: 12
-                size_hint: 0.25, 0.1
-                size_hint_y: 0.1
+                size_hint: 0.25, 1
+                on_release: 
+                    app.root.current= "configure"
+                    root.manager.transition.direction="left"
             Button:
-                text:"Record"
+                text: "Record"
                 font_size: 12
-                size_hint: 0.25, 0.1
-                size_hint_y: 0.1
+                size_hint: 0.25, 1
+                on_release: 
+                    app.root.current= "record"
+                    root.manager.transition.direction="left"
             Button:
-                text:"Publish"
+                text: "Publish"
                 font_size: 12
-                size_hint: 0.25, 0.1
-                size_hint_y: 0.1
+                size_hint: 0.25, 1
+                on_release: 
+                    app.root.current= "publish"
+                    root.manager.transition.direction="left"
         MushroomMapview:
+            size_hint: 1, 0.8
