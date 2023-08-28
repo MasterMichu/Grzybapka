@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.utils import platform
 from kivymd.uix.dialog import MDDialog
+from kivy.clock import Clock
+
 class GpsHelper():
     has_centered_map=False
     def run(self):
@@ -11,15 +13,15 @@ class GpsHelper():
             print(screen)
             if screen.name=="main":
                 gps_blinker=screen.ids.mapview.ids.blinker
-        gps_blinker.blink()
-        if platform=='android':
-            from android.permissions import Permission, request_permission
-            def callback(permissions,results):
-                if all([res for res in results]):
-                    print("Got all permissions")
-                else:
-                    print("did not get all permissions")
-            request_permission([Permission.ACCES_COARSE_LOCATION,Permission.ACCES_FINE_LOCATION],callback)
+        Clock.schedule_once(gps_blinker.blink,2)
+        #if platform=='android':
+        #    from android.permissions import Permission, request_permission
+        #    def callback(permissions,results):
+        #        if all([res for res in results]):
+        #            print("Got all permissions")
+        #        else:
+        #            print("did not get all permissions")
+        #    request_permission([Permission.ACCESS_COARSE_LOCATION,Permission.ACCESS_FINE_LOCATION],callback)
         #request permisions
         #configure gps
         if platform=='android' or platform =='ios':

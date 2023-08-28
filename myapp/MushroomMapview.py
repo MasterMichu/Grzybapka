@@ -3,6 +3,7 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.uix.label import Label
 from kivy_garden.mapview import MapMarker, MapView
+from kivy.clock import Clock
 
 Builder.load_string("""
 <Mushroom_Marker>:
@@ -43,6 +44,12 @@ class MushroomMapview(MapView):
     markers_added = []
     trans_markers_added=[]
     zoomvalue = 10
+    def __init__(self, **kwargs):
+        Clock.schedule_once(self.callback,3)
+        super().__init__(**kwargs)
+    def callback(self,dt):
+        pass
+        
 
     def start_getting_points_in_fov(self, zoomvalue):
         try:
@@ -126,10 +133,3 @@ class MushroomMapview(MapView):
         id = mushroom[0]
         self.mushrooms_points_id.append(id)
         self.markers_added.append(marker)
-
-class MyMapApp(App):
-    def build(self):
-        return MushroomMapview()
-
-if __name__ == '__main__':
-    MyMapApp().run()
