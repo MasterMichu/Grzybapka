@@ -2,6 +2,9 @@ from kivymd.app import MDApp
 from MushroomMapview import MushroomMapview
 from kivy.uix.screenmanager import ScreenManager,Screen
 from FilterChoice import FilterChoice
+from Configure import Configure
+from RecordMushrooms import RecordMushrooms
+from gpshelper import GpsHelper
 import sqlite3
 
 class FilterChoice(Screen):
@@ -12,8 +15,6 @@ class Configure(Screen):
     pass
 
 
-class RecordMushrooms(Screen):
-    pass
 
 
 class Publish(Screen):
@@ -35,10 +36,11 @@ class MainApp(MDApp):
     def on_start(self):
         self.connection=sqlite3.connect("localDB.db")
         self.cur=self.connection.cursor()
+        GpsHelper().run()
 
     def build(self):
         sm = ScreenManager()
-        sm.add_widget(Mainwindow(name='main'))
+        sm.add_widget(Mainwindow(name='main'),id="main")
         sm.add_widget(FilterChoice(name='filter'))
         sm.add_widget(Configure(name='configure'))
         sm.add_widget(RecordMushrooms(name='record'))
@@ -48,3 +50,4 @@ class MainApp(MDApp):
     pass
 mainappinstance=MainApp()
 mainappinstance.run()
+#print(mainappinstance.root.current)

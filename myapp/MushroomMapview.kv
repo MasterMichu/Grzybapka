@@ -1,4 +1,6 @@
 #:import MapView kivy_garden.mapview.MapView
+#:import GpsBlinker gpsblinker.GpsBlinker
+#:include gpsblinker.kv
 
 <MushroomMapview>:
     lat: 33.75
@@ -10,3 +12,5 @@
         self.start_getting_points_in_fov(self.zoom)
     on_lon:
         self.start_getting_points_in_fov(self.zoom)
+    GpsBlinker:
+        id: blinker

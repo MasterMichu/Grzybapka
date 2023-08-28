@@ -9,12 +9,12 @@ import sqlite3
 
 
 class MushroomsCheckboxesList(BoxLayout):
-    print("initiated")
+    #print("initiated")
     checkboxlist=[]
     addedboxes=[]
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        print(kwargs)
+        #print(kwargs)
         self.load_list_of_edible_mushrooms()
         self.orientation="vertical"
         for item in self.checkboxlist:
@@ -35,17 +35,17 @@ class MushroomsCheckboxesList(BoxLayout):
         sql_statement = "SELECT * FROM edible"
         fetching = cur.execute(sql_statement)
         edible = cur.fetchall()
-        print(edible)
+        #print(edible)
         result=[]
         for i in edible:
             result.append({"active":False,"text":i[1]})
         self.checkboxlist=result
     def save_state_of_checkbox(self,*args):
-        print("func called")
-        print(self.addedboxes)
+        #print("func called")
+        #print(self.addedboxes)
         sqlfilter=""
         for box in self.addedboxes:
-            print(box.text+','+str(box.active))
+            #print(box.text+','+str(box.active))
             if box.active==True:
                 if sqlfilter=="":
                     sqlfilter=f" AND (type='{box.text}')"
@@ -53,7 +53,7 @@ class MushroomsCheckboxesList(BoxLayout):
                     sqlfilter=sqlfilter[:-1]+f" OR type='{box.text}')"
         app = App.get_running_app()
         app.filterconfig=sqlfilter
-        print(sqlfilter)
+        #print(sqlfilter)
         return self.save_state_of_checkbox
         
 

@@ -69,7 +69,7 @@ class MushroomMapview(MapView):
         min_lat, min_lon, max_lat, max_lon = self.get_bbox()
         self.mappoints_values = []
         app = App.get_running_app()
-        print(self.zoomvalue)
+        #print(self.zoomvalue)
         sql_extra_filter=app.filterconfig
         if self.zoomvalue > 12:
             sql_statement = "SELECT * FROM mushrooms WHERE x>%s AND x<%s AND y>%s AND y<%s%s" % (

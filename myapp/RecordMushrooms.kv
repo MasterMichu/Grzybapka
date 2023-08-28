@@ -1,0 +1,13 @@
+<RecordMushrooms>:
+    name: "record"
+    BoxLayout:
+        id:"xo1"
+        orientation: "horizontal"
+        cols:2
+        Button:
+            text:"back to map"
+            on_release: 
+                app.root.current="main"
+                root.manager.transition.direction="right"
+        ReportingScreen:
+            id: screentoupdate
