@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.utils import platform
 from kivymd.uix.dialog import MDDialog
 from kivy.clock import Clock
+from plyer import gps
 
 class GpsHelper():
     has_centered_map=False
@@ -14,21 +15,29 @@ class GpsHelper():
             if screen.name=="main":
                 gps_blinker=screen.ids.mapview.ids.blinker
         Clock.schedule_once(gps_blinker.blink,2)
-        #if platform=='android':
-        #    from android.permissions import Permission, request_permission
-        #    def callback(permissions,results):
-        #        if all([res for res in results]):
-        #            print("Got all permissions")
-        #        else:
-        #            print("did not get all permissions")
-        #    request_permission([Permission.ACCESS_COARSE_LOCATION,Permission.ACCESS_FINE_LOCATION],callback)
-        #request permisions
-        #configure gps
+        print(platform)
+        if platform=='android':  
+            Clock.schedule_once(self.permissions_request_func,2)  
+            print("requesting permissions")
         if platform=='android' or platform =='ios':
-            from plyer import gps
             gps.configure(on_location=self.update_blinker_position,
                           on_status=self.on_auth_status)
             gps.start(minTime=1000, minDistance=0)
+
+    def permissions_request_func(self,dt):
+        from android import permissions
+        from android.permissions import Permission, request_permissions
+        request_permissions([Permission.ACCESS_COARSE_LOCATION,Permission.ACCESS_FINE_LOCATION],self.callback)
+        print(dir(request_permissions))
+        print(dir(permissions.Permission))
+
+    def callback(self,permissions,results):
+                if all([res for res in results]):
+                    print("Got all permissions")
+                else:
+                    print("did not get all permissions")
+                    Clock.schedule_once(self.permissions_request_func,2)
+
     def update_blinker_position(self,*args,**kwargs):
         my_lat=kwargs['lat']
         my_lon= kwargs['lon']
