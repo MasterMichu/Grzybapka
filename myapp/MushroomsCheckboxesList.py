@@ -9,12 +9,20 @@ import sqlite3
 
 
 class MushroomsCheckboxesList(BoxLayout):
+<<<<<<< HEAD
     #print("initiated")
+=======
+    print("initiated")
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
     checkboxlist=[]
     addedboxes=[]
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+<<<<<<< HEAD
         #print(kwargs)
+=======
+        print(kwargs)
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
         self.load_list_of_edible_mushrooms()
         self.orientation="vertical"
         for item in self.checkboxlist:
@@ -35,17 +43,29 @@ class MushroomsCheckboxesList(BoxLayout):
         sql_statement = "SELECT * FROM edible"
         fetching = cur.execute(sql_statement)
         edible = cur.fetchall()
+<<<<<<< HEAD
         #print(edible)
+=======
+        print(edible)
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
         result=[]
         for i in edible:
             result.append({"active":False,"text":i[1]})
         self.checkboxlist=result
     def save_state_of_checkbox(self,*args):
+<<<<<<< HEAD
         #print("func called")
         #print(self.addedboxes)
         sqlfilter=""
         for box in self.addedboxes:
             #print(box.text+','+str(box.active))
+=======
+        print("func called")
+        print(self.addedboxes)
+        sqlfilter=""
+        for box in self.addedboxes:
+            print(box.text+','+str(box.active))
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
             if box.active==True:
                 if sqlfilter=="":
                     sqlfilter=f" AND (type='{box.text}')"
@@ -53,7 +73,11 @@ class MushroomsCheckboxesList(BoxLayout):
                     sqlfilter=sqlfilter[:-1]+f" OR type='{box.text}')"
         app = App.get_running_app()
         app.filterconfig=sqlfilter
+<<<<<<< HEAD
         #print(sqlfilter)
+=======
+        print(sqlfilter)
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
         return self.save_state_of_checkbox
         
 

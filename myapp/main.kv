@@ -1,10 +1,22 @@
 #:include MushroomMapview.kv
 #:include FilterChoice.kv
 #:include Configure.kv
+<<<<<<< HEAD
 #:include RecordMushrooms.kv
 
 
 
+=======
+
+
+<RecordMushrooms>:
+    name: "record"
+    Button:
+        text:"go back"
+        on_release: 
+            app.root.current="main"
+            root.manager.transition.direction="right"
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
 
 <Publish>:
     name: "publish"
@@ -15,12 +27,18 @@
             root.manager.transition.direction="right"
 <Mainwindow>:
     name: "main"
+<<<<<<< HEAD
     id: main
     GridLayout:
         id: grid
         cols: 1
         GridLayout:
             id: grid2
+=======
+    GridLayout:
+        cols: 1
+        GridLayout:
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
             cols: 4
             size_hint: 1, 0.1  # Set the height to 10% of the screen height
 
@@ -54,5 +72,9 @@
                     app.root.current= "publish"
                     root.manager.transition.direction="left"
         MushroomMapview:
+<<<<<<< HEAD
             size_hint: 1, 0.8
             id: mapview
+=======
+            size_hint: 1, 0.8
+>>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
