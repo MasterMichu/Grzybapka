@@ -47,15 +47,12 @@ class MushroomMapview(MapView):
     markers_added = []
     trans_markers_added=[]
     zoomvalue = 10
-<<<<<<< HEAD
     def __init__(self, **kwargs):
         Clock.schedule_once(self.callback,3)
         super().__init__(**kwargs)
     def callback(self,dt):
         pass
         
-=======
->>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
 
     def start_getting_points_in_fov(self, zoomvalue):
         try:
@@ -82,11 +79,7 @@ class MushroomMapview(MapView):
         min_lat, min_lon, max_lat, max_lon = self.get_bbox()
         self.mappoints_values = []
         app = App.get_running_app()
-<<<<<<< HEAD
         #print(self.zoomvalue)
-=======
-        print(self.zoomvalue)
->>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
         sql_extra_filter=app.filterconfig
         if self.zoomvalue > 12:
             sql_statement = "SELECT * FROM mushrooms WHERE x>%s AND x<%s AND y>%s AND y<%s%s" % (
@@ -142,15 +135,4 @@ class MushroomMapview(MapView):
         self.add_widget(marker)
         id = mushroom[0]
         self.mushrooms_points_id.append(id)
-<<<<<<< HEAD
         self.markers_added.append(marker)
-=======
-        self.markers_added.append(marker)
-
-class MyMapApp(App):
-    def build(self):
-        return MushroomMapview()
-
-if __name__ == '__main__':
-    MyMapApp().run()
->>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
