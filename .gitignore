@@ -1,3 +1,3 @@
 /myapp/.buildozer
 /venv
-/myapp/bin
+/myapp/.buildozer/bin
