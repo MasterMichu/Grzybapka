@@ -6,7 +6,9 @@ from Configure import Configure
 from RecordMushrooms import RecordMushrooms
 from gpshelper import GpsHelper
 from kivy.clock import Clock
+from Permissions_request import Request_permissions_function
 import sqlite3
+
 
 class FilterChoice(Screen):
     pass
@@ -34,16 +36,29 @@ class MainApp(MDApp):
     cur=None
     filterconfig=None
     reportconfig=None
-    def callback(self,dt):
-        pass
+    ALLPERMS_GRANTED=False
+    FirstLoop=True
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        #while True:
+            #self.ALLPERMS_GRANTED=Request_permissions_function()
+            #if self.ALLPERMS_GRANTED:
+            #    break
+            #Clock.schedule_once(self.callback,5000)
+
+
     def on_start(self):
         self.connection=sqlite3.connect("localDB.db")
         self.cur=self.connection.cursor()
-        Clock.schedule_once(self.callback,2)
         GpsHelper().run()
 
     def build(self):
         sm = ScreenManager()
+        #while True:
+        #    self.ALLPERMS_GRANTED=Request_permissions_function()
+        #    Clock.schedule_once(self.callback,5)
+        #    if self.ALLPERMS_GRANTED:
+        #        break
         sm.add_widget(Mainwindow(name='main'),id="main")
         sm.add_widget(FilterChoice(name='filter'))
         sm.add_widget(Configure(name='configure'))
@@ -53,5 +68,6 @@ class MainApp(MDApp):
         
     pass
 mainappinstance=MainApp()
+
 mainappinstance.run()
 #print(mainappinstance.root.current)

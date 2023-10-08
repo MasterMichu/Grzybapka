@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = My Application
+title = grzybApka
 
 # (str) Package name
 package.name = myapp
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.2.1,plyer, kivy_garden.mapview
+requirements = python3,kivy==2.2.1, kivy_garden.mapview, ,requests,certifi,urllib3,chardet,idna, jnius,android, https://github.com/HyTurtle/plyer/archive/master.zip
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -95,16 +95,16 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = (android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18),android.permission.ACCES_COARSE_LOCATION,android.permission.ACCES_FINE_LOCATION)
+android.permissions = android.permission.INTERNET,android.permission.ACCESS_COARSE_LOCATION,android.permission.ACCESS_FINE_LOCATION,android.permission.READ_PHONE_STATE,(name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+android.api = 31
 
 # (int) Minimum API your APK / AAB will support.
-#android.minapi = 21
+android.minapi = 23
 
 # (int) Android SDK version to use
 #android.sdk = 20
@@ -113,7 +113,7 @@ android.permissions = (android.permission.INTERNET, (name=android.permission.WRI
 #android.ndk = 23b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
-#android.ndk_api = 21
+#android.ndk_api = 23
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
 #android.private_storage = True
