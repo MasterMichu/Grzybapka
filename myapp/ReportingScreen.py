@@ -25,8 +25,27 @@ class ReportingScreen(StackLayout):
                 self.remove_widget(added)
             self.added_widgets=[]
             for mushroom in app.reportconfig:
-                button=Button(text=mushroom,size_hint=(0.33,0.33))
+                button=Button(text=mushroom,size_hint=(0.33,0.33),on_release=self.GetCoordinates)
                 self.added_widgets.append(button)
                 self.add_widget(button)
+    
+    def GetCoordinates(self,*args,**kwargs):
+        for screen in App.get_running_app().root.screens:
+            if screen.name=="main":
+                gps_blinker=screen.ids.mapview.ids.blinker
+                mapa=screen.ids.mapview
+        mushroomName=args[0].text
+        print(kwargs)
+        current_lat=gps_blinker.lat
+        current_lon=gps_blinker.lon
+        #mushroomName=kwargs["mushroomName"]
+        print("current_lat=",current_lat,"current_lon=",current_lon,"mushroom=",mushroomName)
+        pass
+    def SerializeDataForDB(self,dataDict):
+        pass
+    def RecordInDB(self):
+        pass
+
+    
         
     

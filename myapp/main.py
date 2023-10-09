@@ -38,6 +38,7 @@ class MainApp(MDApp):
     reportconfig=None
     ALLPERMS_GRANTED=False
     FirstLoop=True
+    GpsStarted=False
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         #while True:
