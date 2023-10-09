@@ -3,10 +3,7 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.uix.label import Label
 from kivy_garden.mapview import MapMarker, MapView
-<<<<<<< HEAD
 from kivy.clock import Clock
-=======
->>>>>>> 7e3c65269aa46c4798af674dc7edbeb64d20d49c
 
 Builder.load_string("""
 <Mushroom_Marker>:
