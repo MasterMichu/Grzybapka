@@ -1,3 +1,4 @@
 /myapp/.buildozer
 /venv
 /myapp/.buildozer/bin
+#test
